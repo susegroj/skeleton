@@ -1,0 +1,82 @@
+@use '@styles/breakpoints' as size;
+@import '@styles/mixins';
+
+.main-home {
+  @include flex(column, nowrap);
+  
+  gap: 2rem;
+  height: 100%;
+
+  .card-list {
+    @include flex(row, wrap, center, center, center);
+    gap: 1rem;
+    padding: 1rem 0;
+    width: 100%;
+
+    .card {
+      @include flex(row, nowrap, center, flex-start, center);
+      background: var(--white);
+      border-radius: 0.8rem;
+      flex: 1 1 25%;
+      gap: 1rem;
+      max-width: 500px;
+      min-width: 300px;
+      padding: 1rem;
+
+      &-image {
+        @include image(80px, 120px, 1rem);
+        min-width: 80px;
+      }
+
+      &-content {
+        @include flex(column, nowrap, center, flex-start, center);
+        gap: 1rem;
+        width: 100%;
+
+        h3 {
+          font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+        
+        .footer {
+          @include flex(row, nowrap, flex-start, center, center);
+          gap: 1rem;
+          width: 100%;
+
+          .dot {
+            background: rgba(var(--black), 0.1);
+            border-radius: 50%;
+            flex-shrink: 0;
+            height: 0.8rem;
+            width: 0.8rem;
+          }
+
+          .name,
+          .read {
+            font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+          }
+
+          .read {
+            color: rgba(var(--black), 0.5);
+          }
+
+          &-user {
+            @include image(1rem, 1rem, true);
+            flex-shrink: 0;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+
+@include media(desktop-first, size.$mobile) {
+  .main-home {
+    .card-list {
+      .card {
+        min-width: 100%;
+      }
+    }
+  }
+}
